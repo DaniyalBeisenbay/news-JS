@@ -1,0 +1,26 @@
+import News from './news/news';
+import Sources from './sources/sources';
+
+import type { NewsResponse, SourcesResponse } from '../../types/news';
+
+export class AppView {
+    private readonly news: News;
+    private readonly sources: Sources;
+
+    public constructor() {
+        this.news = new News();
+        this.sources = new Sources();
+    }
+
+    public drawNews(data: NewsResponse): void {
+        const values = data?.articles ?? [];
+        this.news.draw(values);
+    }
+
+    public drawSources(data: SourcesResponse): void {
+        const values = data?.sources ?? [];
+        this.sources.draw(values);
+    }
+}
+
+export default AppView;
